@@ -1,0 +1,7 @@
+<p><%= link_to 'Create Topic', new_user_topic_path(user_id: current_user.id), method: :get%></p>
+
+<h1>List of topics</h1> 
+
+<% @topics.each do |quo|%>
+	<h4><%= link_to quo.name, user_topic_path(user_id: @user.id, id: quo.id), method: :get %></h4>
+<%end%>

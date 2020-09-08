@@ -1,0 +1,25 @@
+<p><%= link_to 'Back', root_path, method: :get%></p>
+
+<h2><%= @question.question%></h2>
+
+<% if  !question_follows?(current_user.id,@question.id) %>
+	<%= form_with scope: :follow, url: follwers_path, local: true do |form| %>
+		<%= form.hidden_field :user_id, :value => current_user.id %>
+		<%= form.hidden_field :question_id, :value => @question.id %>
+		<%= form.hidden_field :followed, :value => true %>
+		<p>
+	      <%= form.submit "Follow Question"%>
+	    </p>
+	<% end %>
+<% else %>
+	<%= button_tag 'Already following this question'%>
+<% end %>
+
+<h3>Answers:</h3>
+
+<% @question.answers.each do |ans| %>
+	<p><%= ans.description %></p>
+<% end %>
+
+
+<h3><%= link_to 'Add Answer', new_question_answer_path(question_id: @question.id)%></h3>

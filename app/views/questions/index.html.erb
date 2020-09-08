@@ -1,0 +1,12 @@
+<h1>Hello <%= @user.email %></h1> 
+<p><%= link_to 'Log Out', destroy_user_session_path, method: :delete %> | <%= link_to 'Create Question', new_user_question_path(user_id: current_user.id), method: :get%> | <%= link_to 'Topics', user_topics_path(user_id: current_user.id)%></p>
+
+<h3>You had given <%= @user_answers.count %> answers. |
+You had asked <%= @user.questions.count %> questions. |
+You are following <%= @user_following.count %> number of user questions and topics.</h3>
+
+<h1>List of questions</h1> 
+
+<% @quotions.each do |quo|%>
+	<h4><%= link_to quo.question, user_question_path(user_id: @user.id, id: quo.id), method: :get %></h4>
+<%end%>

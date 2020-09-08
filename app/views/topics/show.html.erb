@@ -1,0 +1,16 @@
+<p><%= link_to 'Back', root_path, method: :get%></p>
+
+<h2><%= @topic.name %></h2>
+
+<% if  !topic_follows?(current_user.id,@topic.id) %>
+	<%= form_with scope: :follow, url: follwers_path, local: true do |form| %>
+		<%= form.hidden_field :user_id, :value => current_user.id %>
+		<%= form.hidden_field :topic_id, :value => @topic.id %>
+		<%= form.hidden_field :followed, :value => true %>
+		<p>
+	      <%= form.submit "Follow Topic"%>
+	    </p>
+	<% end %>
+<% else %>
+	<%= button_tag 'Already following this topic'%>
+<% end %>

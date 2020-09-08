@@ -1,0 +1,15 @@
+<%= form_with scope: :answer, url: question_answers_path(question_id: @question.id), local: true do |form| %>
+
+  <p>
+    <%= form.label :answer %><br>
+    <%= form.text_area :description %>
+  </p>
+
+  <%= form.hidden_field :user_id, :value => current_user.id %>
+
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>
+ 
